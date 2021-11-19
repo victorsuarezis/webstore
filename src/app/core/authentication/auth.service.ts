@@ -54,7 +54,7 @@ export class AuthService {
     }
 
     signup(account: NewAccount, redirectTo: String) {
-        this.http.post<Token>(Library.API_ENDPOINT + 'users/signup', account, OPTIONS)
+        this.http.post<Token>(Library.API_ENDPOINT + 'account/signup', account, OPTIONS)
             .subscribe(
                 (response: Token) => {
                     this.loggedIn = true;
