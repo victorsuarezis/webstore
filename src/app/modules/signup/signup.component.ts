@@ -33,7 +33,8 @@ export class SignupComponent implements OnInit {
         'city': ['', [Validators.required]],
         'postal': ['', [Validators.required]],
         'newPassword': ['', [Validators.required, ValidationService.passwordValidator]],
-        'confirmPassword': ['', [Validators.required, ValidationService.passwordValidator]]
+        'confirmPassword': ['', [Validators.required, ValidationService.passwordValidator]],
+        'country': ['', [Validators.required]]
       },
       {validator: ValidationService.matchingPasswords('newPassword', 'confirmPassword')}
     );

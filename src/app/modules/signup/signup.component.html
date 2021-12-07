@@ -22,7 +22,7 @@
           </div>
         </tab>
         <tab heading="Sign Up">
-          <form class="regForm" [formGroup]="accountForm" (ngSubmit)='signup(accountForm.value)'>
+          <form class="regForm" [formGroup]="accountForm" (ngSubmit)='signup(accountForm.value)' (ngSubmit)='ngOnInit()'>
             <div class="container my-5">
               <div class="row justify-content-center">
 
@@ -92,7 +92,11 @@
                       </div>
                       <div class="form-group">
                           <label>Country</label>
-
+                          <app-control-messages *ngIf="accountForm.controls" [control]="accountForm.controls.country"></app-control-messages>
+                          <select name="country" id="country" [(ngModel)]="selectedCountry" class="form-control" ngControl='accountForm.country' #country 
+                              formControlName="country" title="Country" placeholder="Country" required>
+                            <option [ngValue]="country" *ngFor="let country of countries">{{country.name}}</option>
+                          </select>
                       </div>
 
                   </div>
