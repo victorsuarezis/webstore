@@ -54,19 +54,19 @@ export class AuthService {
     }
 
     signup(account: NewAccount, redirectTo: String) {
-        this.http.post<Token>(Library.API_ENDPOINT + 'account/signup', account, OPTIONS)
+        this.http.post<Token>(Library.API_ENDPOINT + 'account/signup', {name: account.name, email: account.email, password: account.password}, OPTIONS)
             .subscribe(
                 (response: Token) => {
                     this.loggedIn = true;
                     localStorage.setItem('jwt', response.token);
 
                     this.onDecodedToken(response.token);
-                    this.showAlert({type: 'success', msg: 'Bienvenue ' + this.decodedToken.name});
+                    this.showAlert({type: 'success', msg: 'Welcome ' + this.decodedToken.name});
                     this.router.navigateByUrl('/' + redirectTo);
                 },
                 error => {
                     this.loggedIn = false;
-                    this.router.navigateByUrl('/auth');
+                    this.router.navigateByUrl('/signup');
                     this.decodedToken = null;
                     console.log(error.toString());
                 }

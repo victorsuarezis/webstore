@@ -53,4 +53,8 @@ export class SignupComponent implements OnInit {
     this.authService.login(this.account.username, this.account.password, '/home');
   }
 
+  signup() {
+    this.authService.signup(this.accountForm.value, '/home');
+  }
+
 }
